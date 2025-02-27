@@ -4,18 +4,15 @@ from faker.generator import random
 from faker import Faker
 
 
-fake = Faker("ru_RU")
-os.makedirs("output", mode=0o777, exist_ok=True)
-
 SKILLS = [
-  "Стремительный прыжок",
-  "Электрический выстрел",
-  "Ледяной удар",
-  "Стремительный удар",
-  "Кислотный взгляд",
-  "Тайный побег",
-  "Ледяной выстрел",
-  "Огненный заряд"
+    "Стремительный прыжок",
+    "Электрический выстрел",
+    "Ледяной удар",
+    "Стремительный удар",
+    "Кислотный взгляд",
+    "Тайный побег",
+    "Ледяной выстрел",
+    "Огненный заряд"
 ]
 
 ALPHABET = {
@@ -54,7 +51,11 @@ def runic_skills_generator(SKILLS, ALPHABET):
     return runic_skills
 
 
-def main ():
+def main():
+
+    fake = Faker("ru_RU")
+    os.makedirs("output", mode=0o777, exist_ok=True)
+
     for output in range(10):
 
         first_name = fake.first_name()
@@ -72,18 +73,18 @@ def main ():
         skills_list = random.sample(runic_skills, 3)
 
         context = {
-          "first_name": first_name,
-          "last_name": last_name,
-          "job": job,
-          "town": town,
-          "strength": strength,
-          "agility": agility,
-          "endurance": endurance,
-          "intelligence": intelligence,
-          "luck": luck,
-          "skill_1": skills_list[0],
-          "skill_2": skills_list[1],
-          "skill_3": skills_list[2]
+            "first_name": first_name,
+            "last_name": last_name,
+            "job": job,
+            "town": town,
+            "strength": strength,
+            "agility": agility,
+            "endurance": endurance,
+            "intelligence": intelligence,
+            "luck": luck,
+            "skill_1": skills_list[0],
+            "skill_2": skills_list[1],
+            "skill_3": skills_list[2]
         }
 
         file_operations.render_template("charsheet.svg", f"output/{first_name}_{last_name}.svg", context)
